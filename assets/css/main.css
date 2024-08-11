@@ -744,10 +744,10 @@ section,
 }
 
 .hero .cv-link {
-  border-radius: 18px;
-  margin-top: 25px;
-  color: var(--accent-color);
-  border-color: var(--accent-color);
+  border-radius: 18px !important;
+  margin-top: 25px !important; 
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
 }
 
 .hero .social-links a:hover {
