@@ -698,9 +698,9 @@ section,
   position: absolute;
   inset: 0;
   display: block;
-  width: 100%;
+  width: 130%;
   height: 100%;
-  object-fit: cover;
+  object-fit: scale-down;
   z-index: 1;
 }
 
