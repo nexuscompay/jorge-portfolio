@@ -743,6 +743,13 @@ section,
   transition: 0.3s;
 }
 
+.hero .cv-link {
+  border-radius: 18px;
+  margin-top: 25px;
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
 .hero .social-links a:hover {
   background-color: var(--accent-color);
 }
