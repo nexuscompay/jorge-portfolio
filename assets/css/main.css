@@ -750,6 +750,11 @@ section,
   border-color: var(--accent-color) !important;
 }
 
+.hero .cv-link:hover {
+  background-color: var(--accent-color);
+  color: var(--default-color) !important;
+}
+
 .hero .social-links a:hover {
   background-color: var(--accent-color);
 }
