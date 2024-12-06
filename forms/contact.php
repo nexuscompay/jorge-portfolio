@@ -1,41 +1,58 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+require './sendgrid-php-main/lib/SendGrid.php';
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+use SendGrid\Mail\Mail;
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve and sanitize form inputs
+    $name = filter_input(INPUT_POST, 'name');
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $subject = filter_input(INPUT_POST, 'subject');
+    $message = filter_input(INPUT_POST, 'message');
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+    // Check required fields
+    if (!$name || !$email || !$subject || !$message) {
+        echo json_encode(['status' => 'error', 'message' => 'Por favor, preencha todos os campos corretamente.']);
+        exit;
+    }
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+    // SendGrid configuration
+    $sendgrid_api_key = 'YOUR_SENDGRID_API_KEY'; // Replace with your SendGrid API key
+    $to_email = "jorgeveloso233@gmail.com";       // Replace with your email address
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+    // Create email object
+    $emailObj = new Mail();
+    $emailObj->setFrom($email, $name);
+    $emailObj->setSubject($subject);
+    $emailObj->addTo($to_email, "Your Name");
+    $emailObj->addContent(
+        "text/plain",
+        "Nome: $name\nEmail: $email\nMensagem:\n$message"
+    );
+    $emailObj->addContent(
+        "text/html",
+        "<strong>Nome:</strong> $name<br><strong>Email:</strong> $email<br><strong>Mensagem:</strong><br>$message"
+    );
 
-  echo $contact->send();
-?>
+    // Send email using SendGrid
+    $sendgrid = new \SendGrid($sendgrid_api_key);
+
+    try {
+        $response = $sendgrid->send($emailObj);
+        if ($response->statusCode() == 202) {
+            echo json_encode(['status' => 'success', 'message' => 'A sua mensagem foi enviada. Obrigado!']);
+        } else {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Houve um erro ao enviar a mensagem. Por favor, tente novamente mais tarde.'
+            ]);
+        }
+    } catch (Exception $e) {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Erro: ' . $e->getMessage()
+        ]);
+    }
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Método de requisição inválido.']);
+}
