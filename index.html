@@ -8,6 +8,7 @@
     <meta name="keywords" content="" />
 
     <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="assets/css/logo.png" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -50,11 +51,10 @@
       <div
         class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
       >
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">Portfólio</h1>
-        </a>
+       <a href="index.html" class="logo d-flex align-items-center">
+        <!--<img src="assets/css/logo.png" alt="Logo">-->
+        <h1 class="sitename">Portfólio</h1>
+       </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
@@ -71,34 +71,34 @@
     <main class="main">
       <!-- Hero Section -->
       <section id="hero" class="hero section dark-background">
-        <img src="assets/img/profile-img-1.png" alt="" data-aos="fade-in" />
+        <img src="assets/img/JorgeVeloso.png" alt="" data-aos="fade-in" />
 
         <div class="container" data-aos="zoom-out" data-aos-delay="100">
           <h2>Jorge Veloso</h2>
-          <p>
-            Eu sou
+            <p>
+              Eu sou
             <span
-              class="typed"
-              data-typed-items="Freelancer, Desenvolvedor de Software"
-              >Freelancer</span
+             class="typed"
+             data-typed-items="Cloud Engineer, DevOps e SRE Enthusiast, Desenvolvedor de Software, Arquiteto de Soluções"
+              >Cloud Engineer</span
             ><span class="typed-cursor typed-cursor--blink"></span>
           </p>
           <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=100044229125777"
-              ><i class="bi bi-facebook"></i
+            <a href="https://github.com/jorgevelosodev" target="_blank"
+              ><i class="bi bi-github"></i
             ></a>
-            <a href="https://www.instagram.com/jorge_veloso16/"
+            <a href="https://www.instagram.com/jorge_veloso16/" target="_blank"
               ><i class="bi bi-instagram"></i
             ></a>
-            <a href="https://linkedin.com/in/jorge-veloso-604243256"
+            <a href="https://linkedin.com/in/jorge-veloso-604243256" target="_blank"
               ><i class="bi bi-linkedin"></i
             ></a>
           </div>
           <a
-            href="https://nexuscompay.github.io/jorge-portfolio/assets/CV-Jorge.pdf"
+            href="https://nexuscompay.github.io/jorge-portfolio/assets/Curriculum-Vitae-Jorge.pdf"
             download
             class="cv-link btn btn-outline-primary"
-            >Curriculum Vitae</a
+            >Curriculum Vitae - CV</a
           >
         </div>
       </section>
@@ -107,22 +107,22 @@
 
     <footer id="footer" class="footer dark-background">
       <div class="container">
-        <h3 class="sitename">Portfólio</h3>
-        <p>Codificando o futuro, um projeto de cada vez.</p>
+        <h3 class="sitename">DevCloud</h3>
+        <p>Construindo soluções inteligentes na nuvem, linha por linha de código.</p>
         <div class="social-links d-flex justify-content-center">
-          <a href="https://www.facebook.com/profile.php?id=100044229125777"
-            ><i class="bi bi-facebook"></i
+          <a href="https://github.com/jorgevelosodev" target="_blank"
+            ><i class="bi bi-github"></i
           ></a>
-          <a href="https://www.instagram.com/jorge_veloso16/"
+          <a href="https://www.instagram.com/jorge_veloso16/" target="_blank" 
             ><i class="bi bi-instagram"></i
           ></a>
-          <a href="https://www.linkedin.com/in/jorge-veloso-604243256/"
+          <a href="https://www.linkedin.com/in/jorge-veloso-604243256/" target="_blank"
             ><i class="bi bi-linkedin"></i
           ></a>
         </div>
         <div class="container">
           <div class="copyright">
-            <span>Copyright</span>
+            <span>Copyright © <span id="year"></span></span>
             <strong class="px-1 sitename">Jorge Veloso</strong>
             <span>All Rights Reserved</span>
           </div>
@@ -152,6 +152,9 @@
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
